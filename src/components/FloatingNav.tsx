@@ -15,7 +15,7 @@ const navItems: NavItem[] = [
   { label: "Experience", type: "experience", emoji: "🧳" },
   { label: "Skills", type: "skill", emoji: "🧩" },
   { label: "Awards", type: "awards", emoji: "🏆" },
-  { label: "Edu", type: "education", emoji: "🎓" },
+  { label: "Education", type: "education", emoji: "🎓" },
 ];
 
 interface FloatingNavProps {
@@ -32,7 +32,9 @@ export default function FloatingNav({ onNavClick }: FloatingNavProps) {
 
   return (
     <nav
-      className="fixed top-5 right-5 z-[100] flex items-center gap-2 px-4 py-3 rounded-2xl"
+      className="fixed z-[100] flex items-center rounded-2xl transition-all duration-300
+                 top-1/4 right-3 -translate-y-1/2 flex-col gap-3 px-2.5 py-4      /* Mobile => Sidebar Kanan */
+                 sm:top-5 sm:right-5 sm:translate-y-0 sm:flex-row sm:gap-2 sm:px-4 sm:py-3   /* Desktop => Topbar */"
       style={{
         background: "rgba(255,255,255,0.22)",
         backdropFilter: "blur(20px)",
@@ -42,12 +44,13 @@ export default function FloatingNav({ onNavClick }: FloatingNavProps) {
       }}
     >
       {/* Logo / Brand */}
-      <div className="flex items-center gap-2 pr-3 mr-1 border-r border-white/30">
+      <div className="flex items-center justify-center pb-2 mb-1 border-b sm:pr-3 sm:mr-1 sm:pb-0 sm:mb-0 sm:border-b-0 sm:border-r border-white/30">
         <span
           className="font-bold text-sm"
           style={{ color: "#431407", textShadow: "0 1px 2px rgba(255,255,255,0.8)" }}
         >
-          Home
+          <span className="hidden sm:inline">Home</span>
+          <span className="sm:hidden text-lg">🏠</span>
         </span>
       </div>
 
@@ -77,6 +80,7 @@ export default function FloatingNav({ onNavClick }: FloatingNavProps) {
             }
           }}
         >
+          <span className="text-lg leading-none">{item.emoji}</span>
           <span className="hidden sm:inline">{item.label}</span>
         </button>
       ))}

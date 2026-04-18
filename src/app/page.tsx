@@ -104,7 +104,7 @@ export default function HomePage() {
               <p
                 className="font-bold"
                 style={{
-                  fontSize: "clamp(0.75rem, 1.1vw, 1rem)",
+                  fontSize: "1rem",
                   color: "#3b2a1a",
                   textShadow: "0 1px 2px rgba(255,255,255,0.5)",
                   marginBottom: "0.5em",
@@ -115,7 +115,7 @@ export default function HomePage() {
               <p
                 className="font-bold"
                 style={{
-                  fontSize: "clamp(0.75rem, 1.1vw, 1rem)",
+                  fontSize: "1.1rem",
                 }}
               >
                 <TextType
@@ -138,13 +138,13 @@ export default function HomePage() {
           {/* ── TextType 2 — Chalkboard ───────────────────────── */}
           <div
             className="absolute pointer-events-none"
-            style={{ bottom: "12.5%", right: "4%", width: "20%", zIndex: 25, transform: "rotate(2deg)" }}
+            style={{ bottom: "12.5%", right: "3.3%", width: "22%", zIndex: 25, transform: "rotate(2deg)" }}
           >
             <div className={patrickHand.className} style={{ textAlign: "center" }}>
               <p
                 className="font-bold"
                 style={{
-                  fontSize: "clamp(0.65rem, 1.1vw, 1rem)",
+                  fontSize: "1.1rem",
                   color: "#e8e0d0",
                   textShadow: "0 1px 3px rgba(0,0,0,0.35)",
                   marginBottom: "0.2em",
@@ -155,7 +155,7 @@ export default function HomePage() {
               <p
                 className="font-bold"
                 style={{
-                  fontSize: "clamp(0.65rem, 1.1vw, 1rem)",
+                  fontSize: "1.1rem",
                   color: "#e8e0d0",
                   textShadow: "0 1px 3px rgba(0,0,0,0.35)",
                   marginBottom: "0.8em",
@@ -166,7 +166,7 @@ export default function HomePage() {
               <p
                 className="font-bold"
                 style={{
-                  fontSize: "clamp(0.45rem, 1.1vw, 1rem)",
+                  fontSize: "1.1rem",
                 }}
               >
                 <TextType
