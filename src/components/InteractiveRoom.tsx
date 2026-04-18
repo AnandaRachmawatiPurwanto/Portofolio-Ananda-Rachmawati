@@ -92,6 +92,7 @@ const roomElements: RoomElement[] = [
     alt: "Education — Education",
     modalType: "education",
     label: "Education",
+    emoji: "🎓",
     style: { top: "14%", left: "65%", width: "15%" },
   },
 ];
