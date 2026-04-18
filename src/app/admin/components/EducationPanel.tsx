@@ -160,7 +160,7 @@ export default function EducationPanel() {
                 onClose={() => setIsOpen(false)}
                 onSave={handleSave}
                 title={editing ? "Edit Pendidikan" : "Tambah Pendidikan"}
-                saving={saving}
+                isSaving={saving}
             >
                 <Field label="Institusi" required>
                     <Input value={form.institution} onChange={(e) => set("institution", e.target.value)} placeholder="Universitas Diponegoro" />
