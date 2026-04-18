@@ -1,0 +1,199 @@
+{
+  "profile": {
+    "name": "Ananda Rachmawati Purwanto",
+    "tagline": "UI/UX Designer, Fullstack Developer",
+    "bio": "",
+    "avatar": "",
+    "location": "Indonesia",
+    "email": "",
+    "github": "",
+    "linkedin": "",
+    "dribbble": "-"
+  },
+  "projects": [
+    {
+      "id": "proj-001",
+      "title": "JournalTree",
+      "description": "Aplikasi journaling macOS dengan visualisasi pohon kenangan berbasis SpriteKit & SwiftUI.",
+      "longDescription": "JournalTree adalah aplikasi journaling unik di mana setiap entri jurnal tumbuh menjadi daun pada pohon digital. Dibangun dengan SwiftUI, SpriteKit, dan MVVM architecture, aplikasi ini memberikan pengalaman refleksi yang terapeutik dan visual.",
+      "techStack": [
+        "SwiftUI",
+        "Swift",
+        "macOS",
+        "iOS"
+      ],
+      "category": "iOS/macOS",
+      "featured": true,
+      "year": 2025,
+      "githubUrl": "https://github.com/ananda/journaltree"
+    },
+    {
+      "id": "mo4j7odvjyyfg",
+      "title": "",
+      "description": "",
+      "longDescription": "",
+      "techStack": [],
+      "category": "Fullstack",
+      "featured": false,
+      "year": 2026,
+      "liveUrl": "",
+      "githubUrl": "",
+      "imageUrl": ""
+    }
+  ],
+  "experiences": [
+    {
+      "id": "mo4j7riseys0c",
+      "company": "dowdy",
+      "role": "",
+      "type": "Full-time",
+      "startDate": "",
+      "endDate": "",
+      "isPresent": false,
+      "description": "",
+      "achievements": [],
+      "techStack": []
+    }
+  ],
+  "skills": [
+    {
+      "id": "sk-001",
+      "name": "Figma",
+      "category": "UI/UX Design",
+      "proficiency": 5,
+      "yearsOfExperience": 3
+    },
+    {
+      "id": "sk-002",
+      "name": "Design Systems",
+      "category": "UI/UX Design",
+      "proficiency": 4,
+      "yearsOfExperience": 2
+    },
+    {
+      "id": "sk-003",
+      "name": "Prototyping",
+      "category": "UI/UX Design",
+      "proficiency": 4,
+      "yearsOfExperience": 3
+    },
+    {
+      "id": "sk-004",
+      "name": "User Research",
+      "category": "UI/UX Design",
+      "proficiency": 3,
+      "yearsOfExperience": 0
+    },
+    {
+      "id": "sk-005",
+      "name": "TypeScript",
+      "category": "Fullstack Web",
+      "proficiency": 2,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "sk-006",
+      "name": "Next.js",
+      "category": "Fullstack Web",
+      "proficiency": 3,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "sk-007",
+      "name": "React",
+      "category": "Fullstack Web",
+      "proficiency": 2,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "sk-008",
+      "name": "Node.js",
+      "category": "Fullstack Web",
+      "proficiency": 2,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "sk-009",
+      "name": "PostgreSQL",
+      "category": "Fullstack Web",
+      "proficiency": 3,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "sk-011",
+      "name": "Prisma",
+      "category": "Fullstack Web",
+      "proficiency": 2,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "sk-012",
+      "name": "Tailwind CSS",
+      "category": "Fullstack Web",
+      "proficiency": 2,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "sk-013",
+      "name": "SwiftUI",
+      "category": "Mobile / Apple",
+      "proficiency": 1,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "sk-014",
+      "name": "Swift",
+      "category": "Mobile / Apple",
+      "proficiency": 1,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "sk-015",
+      "name": "iOS Development",
+      "category": "Mobile / Apple",
+      "proficiency": 1,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "sk-016",
+      "name": "macOS Development",
+      "category": "Mobile / Apple",
+      "proficiency": 1,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "sk-017",
+      "name": "Docker",
+      "category": "DevOps",
+      "proficiency": 2,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "sk-018",
+      "name": "GitHub Actions",
+      "category": "DevOps",
+      "proficiency": 2,
+      "yearsOfExperience": 1
+    },
+    {
+      "id": "mo44jjmqp4f2z",
+      "name": "",
+      "category": "Fullstack Web",
+      "proficiency": 2,
+      "yearsOfExperience": 0
+    }
+  ],
+  "certificates": [],
+  "awards": [],
+  "education": [
+    {
+      "id": "mo4gq6mekcw52",
+      "institution": "Universitas Diponegoro",
+      "degree": "Universitas",
+      "major": "Informatika",
+      "startYear": 2026,
+      "endYear": 8888,
+      "description": ""
+    }
+  ]
+}

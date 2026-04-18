@@ -1,65 +1,176 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState, useCallback, useRef } from "react"; // Tambah useRef di sini
+import InteractiveRoom from "@/components/InteractiveRoom";
+import Modal from "@/components/Modal";
+import FloatingNav from "@/components/FloatingNav";
+import TextType from "@/components/TextType";
+import type { ModalType } from "@/lib/types";
+import { Patrick_Hand } from 'next/font/google';
+
+// Inisialisasi font Patrick Hand
+const patrickHand = Patrick_Hand({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+// Hanya ada SATU export default function
+export default function HomePage() {
+  // === STATE UNTUK MODAL ===
+  const [modalType, setModalType] = useState<ModalType>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // === STATE & REF UNTUK AUDIO ===
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // === FUNGSI MODAL ===
+  const openModal = useCallback((type: ModalType) => {
+    setModalType(type);
+    setIsModalOpen(true);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setIsModalOpen(false);
+    setTimeout(() => setModalType(null), 300);
+  }, []);
+
+  // === FUNGSI AUDIO ===
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+        audioRef.current.volume = 0.3; // Volume 30% biar estetik dan tidak kaget
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="relative w-screen h-screen overflow-hidden bg-amber-50">
+
+      {/* ── Elemen Audio Tersembunyi ──────────────────────── */}
+      <audio ref={audioRef} src="/backsound.mp3" loop preload="auto" />
+
+      {/* ── Tombol Play/Pause Audio ───────────────────────── */}
+      <button
+        onClick={toggleAudio}
+        className="absolute top-6 left-10 z-50 p-3 bg-white/50 backdrop-blur-md rounded-full shadow-sm hover:scale-110 transition-transform duration-300"
+        title={isPlaying ? "Matikan Musik" : "Putar Musik"}
+      >
+        <span className="text-2xl">
+          {isPlaying ? '🔊' : '🔈'}
+        </span>
+      </button>
+
+      {/* ── Full-screen Interactive Room ─────────────────── */}
+      <InteractiveRoom onElementClick={openModal} />
+
+      {/* ── TextType 1 — Bulletin Board ──────────────────── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{ top: "41%", left: "31.5%", width: "22%", zIndex: 25 }}
+      >
+        <div className={patrickHand.className} style={{ textAlign: "center" }}>
+          <p
+            className="font-bold"
+            style={{
+              fontSize: "clamp(0.75rem, 1.1vw, 1rem)",
+              color: "#3b2a1a",
+              textShadow: "0 1px 2px rgba(255,255,255,0.5)",
+              marginBottom: "0.5em",
+            }}
+          >
+            I&apos;m a
+          </p>
+          <p
+            className="font-bold"
+            style={{
+              fontSize: "clamp(0.75rem, 1.1vw, 1rem)",
+            }}
+          >
+            <TextType
+              texts={[
+                "UI/UX Designer",
+                "Web Developer",
+                "Fullstack Developer",
+              ]}
+              typingSpeed={100}
+              deletingSpeed={60}
+              pauseDuration={2000}
+              showCursor
+              cursorCharacter="|"
+              style={{ color: "#92400e", fontWeight: 800 }}
+            />
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </div>
+
+      {/* ── TextType 2 — Chalkboard ───────────────────────── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{ bottom: "12.5%", right: "3.8%", width: "20%", zIndex: 25, transform: "rotate(2deg)" }}
+      >
+        <div className={patrickHand.className} style={{ textAlign: "center" }}>
+          <p
+            className="font-bold"
+            style={{
+              fontSize: "clamp(0.65rem, 1.1vw, 1rem)",
+              color: "#e8e0d0",
+              textShadow: "0 1px 3px rgba(0,0,0,0.35)",
+              marginBottom: "0.2em",
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            Welcome to
+          </p>
+          <p
+            className="font-bold"
+            style={{
+              fontSize: "clamp(0.65rem, 1.1vw, 1rem)",
+              color: "#e8e0d0",
+              textShadow: "0 1px 3px rgba(0,0,0,0.35)",
+              marginBottom: "0.8em",
+            }}
+          >
+            Nanda&apos;s Portfolio
+          </p>
+          <p
+            className="font-bold"
+            style={{
+              fontSize: "clamp(0.45rem, 1.1vw, 1rem)",
+            }}
+          >
+            <TextType
+              texts={[
+                "Explore my work",
+                "Contact me!"
+              ]}
+              typingSpeed={100}
+              deletingSpeed={60}
+              pauseDuration={2000}
+              showCursor
+              cursorCharacter="|"
+              style={{ color: "#fde68a", fontWeight: 800 }}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </p>
         </div>
-      </main>
-    </div>
+      </div>
+
+      {/* ── Floating Navigation ───────────────────────────── */}
+      <FloatingNav onNavClick={openModal} />
+
+      {/* ── Modal ────────────────────────────────────────────── */}
+      <Modal type={modalType} isOpen={isModalOpen} onClose={closeModal} />
+
+      <style jsx global>{`
+        @keyframes floatHint {
+          0%, 100% { transform: translateX(-50%) translateY(0); }
+          50%       { transform: translateX(-50%) translateY(-6px); }
+        }
+      `}</style>
+    </main>
   );
 }
