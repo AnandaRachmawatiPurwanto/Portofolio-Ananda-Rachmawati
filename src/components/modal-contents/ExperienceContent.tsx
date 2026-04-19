@@ -21,7 +21,6 @@ export default function ExperienceContent() {
 
   return (
     <div className="space-y-5">
-      <p className="text-stone-500 text-sm">Perjalanan profesional saya dalam dunia teknologi dan desain.</p>
       <div className="relative">
         <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-amber-200 via-orange-200 to-transparent" />
         <div className="space-y-6">

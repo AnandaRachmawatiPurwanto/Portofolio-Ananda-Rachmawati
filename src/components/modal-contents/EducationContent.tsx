@@ -7,9 +7,6 @@ export default function EducationContent() {
 
     return (
         <div className="space-y-4">
-            <p className="text-stone-500 text-sm">
-                Riwayat pendidikan formal yang pernah saya tempuh.
-            </p>
             {education.length === 0 && (
                 <div className="text-center py-10 text-stone-400">
                     <p className="text-3xl mb-2">🎓</p>
