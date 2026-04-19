@@ -10,8 +10,16 @@ export default function AboutContent() {
       {/* Hero */}
       <div className="flex items-start gap-5">
         <div className="relative shrink-0">
-          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-200 to-orange-300 flex items-center justify-center text-4xl shadow-lg">
-            🧑‍💻
+          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-200 to-orange-300 flex items-center justify-center text-4xl shadow-lg overflow-hidden border border-amber-300">
+            {profile.avatar ? (
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/profile.png" alt={profile.name} className="w-full h-full object-cover" />
+              </>
+            ) : (
+              <img src="/profile.png" alt={profile.name} className="w-full h-full object-cover" />
+
+            )}
           </div>
           <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-green-400 border-2 border-white" />
         </div>
@@ -33,16 +41,18 @@ export default function AboutContent() {
         <div className="grid grid-cols-2 gap-3">
           {[
             { label: "Email", value: profile.email, icon: "✉️", href: `mailto:${profile.email}` },
-            { label: "GitHub", value: "@ananda", icon: "🐙", href: profile.github },
-            { label: "LinkedIn", value: "in/ananda", icon: "💼", href: profile.linkedin },
-            ...(profile.dribbble ? [{ label: "Dribbble", value: "@ananda", icon: "🏀", href: profile.dribbble }] : []),
+            { label: "GitHub", value: profile.github, icon: "🐙", href: profile.github },
+            { label: "LinkedIn", value: profile.linkedin, icon: "💼", href: profile.linkedin },
+            ...(profile.dribbble ? [{ label: "Dribbble", value: profile.dribbble, icon: "🏀", href: profile.dribbble }] : []),
           ].map((item) => (
             <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-3 p-3 rounded-xl bg-white border border-stone-100 hover:border-amber-300 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 group">
               <span className="text-xl">{item.icon}</span>
               <div>
                 <p className="text-xs text-stone-400 font-medium">{item.label}</p>
-                <p className="text-xs text-stone-700 font-semibold group-hover:text-amber-600 transition-colors truncate">{item.value}</p>
+                <p className="text-xs text-stone-700 font-semibold group-hover:text-amber-500 transition-colors break-all">
+                  {item.value}
+                </p>
               </div>
             </a>
           ))}
@@ -53,7 +63,7 @@ export default function AboutContent() {
       <div>
         <h4 className="text-xs font-semibold text-stone-500 uppercase tracking-widest mb-3">Quick Facts</h4>
         <div className="flex flex-wrap gap-2">
-          {["☕ Coffee-powered coder", "🎨 Design enthusiast", "🍎 Apple ecosystem fan", "📚 Lifelong learner", "🌏 Open to remote work"].map(f => (
+          {["🎨 Design enthusiast", "🍎 Apple ecosystem fan", "📚 Lifelong learner", "🌏 Open to remote work"].map(f => (
             <span key={f} className="px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-stone-600 text-xs font-medium">{f}</span>
           ))}
         </div>

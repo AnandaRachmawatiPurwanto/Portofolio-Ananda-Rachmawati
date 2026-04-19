@@ -28,8 +28,15 @@ export default function ExperienceContent() {
           {experiences.map((exp, idx) => (
             <div key={exp.id} className="relative flex gap-5">
               <div className="relative shrink-0 z-10">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg shadow-md ${idx === 0 ? "bg-amber-400" : "bg-white border-2 border-amber-200"}`}>
-                  {idx === 0 ? "⭐" : "💼"}
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg shadow-md overflow-hidden ${idx === 0 ? "bg-amber-400" : "bg-white border-2 border-amber-200"}`}>
+                  {exp.logoUrl ? (
+                    <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={exp.logoUrl} alt={exp.company} className="w-full h-full object-contain p-1" />
+                    </>
+                  ) : (
+                    idx === 0 ? "⭐" : "💼"
+                  )}
                 </div>
               </div>
               <div className="flex-1 pb-2">

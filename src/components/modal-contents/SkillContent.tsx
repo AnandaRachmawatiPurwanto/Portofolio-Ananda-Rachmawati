@@ -41,7 +41,15 @@ export default function SkillContent() {
                 <div className="space-y-2">
                   {catSkills.map(skill => (
                     <div key={skill.id} className="flex items-center gap-3">
-                      <span className="text-xs text-stone-600 w-36 shrink-0 font-medium">{skill.name}</span>
+                      {skill.iconUrl ? (
+                        <div className="w-5 h-5 shrink-0 rounded bg-stone-50 border border-stone-200 flex items-center justify-center p-0.5">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={skill.iconUrl} alt={skill.name} className="w-full h-full object-contain" />
+                        </div>
+                      ) : (
+                        <div className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
+                      )}
+                      <span className="text-xs text-stone-600 w-36 grow font-medium">{skill.name}</span>
                       <div className="flex-1 bg-stone-100 rounded-full h-2 overflow-hidden">
                         <div className="h-full rounded-full bg-gradient-to-r from-amber-400 to-orange-400 transition-all duration-700" style={{ width: `${(skill.proficiency / 5) * 100}%` }} />
                       </div>

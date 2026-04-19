@@ -45,7 +45,7 @@ export async function readDB(): Promise<PortfolioData> {
         cache: "no-store",
       });
       const data = await res.json();
-      
+
       // Jika data ditemukan di Redis, maka parse dan kembalikan
       if (data && data.result) {
         return JSON.parse(data.result) as PortfolioData;

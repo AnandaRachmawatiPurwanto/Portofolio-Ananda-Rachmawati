@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import type { Project } from "@/lib/types";
 import FormModal, { Field, Input, Textarea, Select } from "./FormModal";
+import ImageUploader from "./ImageUploader";
 import { authFetch } from "@/lib/auth-client";
 import { Pencil, Trash2, Plus } from "lucide-react";
 
@@ -124,7 +125,14 @@ export default function ProjectsPanel() {
           <Field label="Live URL"><Input type="url" value={form.liveUrl ?? ""} onChange={e => set("liveUrl", e.target.value)} placeholder="https://..." /></Field>
           <Field label="GitHub URL"><Input type="url" value={form.githubUrl ?? ""} onChange={e => set("githubUrl", e.target.value)} placeholder="https://github.com/..." /></Field>
         </div>
-        <label className="flex items-center gap-3 cursor-pointer">
+        
+        {/* Fitur Upload Gambar (Vercel Blob) */}
+        <ImageUploader 
+          value={form.imageUrl ?? ""} 
+          onChange={(url) => set("imageUrl", url)} 
+        />
+
+        <label className="flex items-center gap-3 cursor-pointer mt-2">
           <input type="checkbox" checked={form.featured} onChange={e => set("featured", e.target.checked)} className="w-4 h-4 accent-amber-500 rounded" />
           <span className="text-sm font-medium text-stone-700">Tandai sebagai Featured</span>
         </label>

@@ -102,6 +102,7 @@ export interface Award {
   date: string;
   description: string;
   category: string;
+  imageUrl?: string;
 }
 
 // ─── Pendidikan ─────────────────────────────────────────────

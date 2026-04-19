@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 import type { Award } from "@/lib/types";
 import FormModal, { Field, Input, Textarea } from "./FormModal";
+import ImageUploader from "./ImageUploader";
 import { authFetch } from "@/lib/auth-client";
 import { Pencil, Trash2, Plus } from "lucide-react";
 
-const emptyForm: Omit<Award, "id"> = { title: "", issuer: "", date: "", description: "", category: "Competition" };
+const emptyForm: Omit<Award, "id"> = { title: "", issuer: "", date: "", description: "", category: "Competition", imageUrl: "" };
 
 export default function AwardsPanel() {
   const [items, setItems] = useState<Award[]>([]);
@@ -24,7 +25,7 @@ export default function AwardsPanel() {
   const set = <K extends keyof typeof form>(k: K, v: (typeof form)[K]) => setForm(p => ({ ...p, [k]: v }));
 
   const openAdd = () => { setEditing(null); setForm(emptyForm); setIsOpen(true); };
-  const openEdit = (item: Award) => { setEditing(item); setForm({ title: item.title, issuer: item.issuer, date: item.date, description: item.description, category: item.category }); setIsOpen(true); };
+  const openEdit = (item: Award) => { setEditing(item); setForm({ title: item.title, issuer: item.issuer, date: item.date, description: item.description, imageUrl: item.imageUrl ?? "", category: item.category }); setIsOpen(true); };
 
   const handleDelete = async (id: string) => {
     if (!confirm("Hapus penghargaan ini?")) return;
@@ -88,6 +89,13 @@ export default function AwardsPanel() {
         </div>
         <Field label="Kategori"><Input value={form.category} onChange={e => set("category", e.target.value)} placeholder="Competition / Academic / Other" /></Field>
         <Field label="Deskripsi"><Textarea rows={4} value={form.description} onChange={e => set("description", e.target.value)} placeholder="Ceritakan tentang penghargaan ini..." /></Field>
+        
+        {/* Fitur Upload Gambar (Vercel Blob) */}
+        <ImageUploader 
+          label="Foto Dokumentasi Penghargaan (opsional)"
+          value={form.imageUrl ?? ""} 
+          onChange={(url) => set("imageUrl", url)} 
+        />
       </FormModal>
     </div>
   );

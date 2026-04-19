@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react";
 import type { Certificate, SkillCategory } from "@/lib/types";
 import FormModal, { Field, Input, Select } from "./FormModal";
+import ImageUploader from "./ImageUploader";
 import { authFetch } from "@/lib/auth-client";
 import { Pencil, Trash2, Plus } from "lucide-react";
 
 const CATEGORIES: SkillCategory[] = ["UI/UX Design", "Fullstack Web", "Mobile / Apple", "DevOps", "Other"];
 
 const emptyForm: Omit<Certificate, "id"> = {
-  title: "", issuer: "", issueDate: "", expiryDate: "", credentialId: "", credentialUrl: "", category: "Fullstack Web",
+  title: "", issuer: "", issueDate: "", expiryDate: "", credentialId: "", credentialUrl: "", imageUrl: "", category: "Fullstack Web",
 };
 
 export default function CertificatesPanel() {
@@ -28,7 +29,7 @@ export default function CertificatesPanel() {
   const set = <K extends keyof typeof form>(k: K, v: (typeof form)[K]) => setForm(p => ({ ...p, [k]: v }));
 
   const openAdd = () => { setEditing(null); setForm(emptyForm); setIsOpen(true); };
-  const openEdit = (item: Certificate) => { setEditing(item); setForm({ title: item.title, issuer: item.issuer, issueDate: item.issueDate, expiryDate: item.expiryDate ?? "", credentialId: item.credentialId ?? "", credentialUrl: item.credentialUrl ?? "", category: item.category }); setIsOpen(true); };
+  const openEdit = (item: Certificate) => { setEditing(item); setForm({ title: item.title, issuer: item.issuer, issueDate: item.issueDate, expiryDate: item.expiryDate ?? "", credentialId: item.credentialId ?? "", credentialUrl: item.credentialUrl ?? "", imageUrl: item.imageUrl ?? "", category: item.category }); setIsOpen(true); };
 
   const handleDelete = async (id: string) => {
     if (!confirm("Hapus sertifikat ini?")) return;
@@ -97,8 +98,14 @@ export default function CertificatesPanel() {
           <Field label="Tanggal Terbit (YYYY-MM)" required><Input value={form.issueDate} onChange={e => set("issueDate", e.target.value)} placeholder="2024-03" /></Field>
           <Field label="Kedaluwarsa (YYYY-MM)"><Input value={form.expiryDate ?? ""} onChange={e => set("expiryDate", e.target.value)} placeholder="2027-03 (opsional)" /></Field>
         </div>
-        <Field label="ID Kredensial (opsional)"><Input value={form.credentialId ?? ""} onChange={e => set("credentialId", e.target.value)} placeholder="ABC-XYZ-123" /></Field>
         <Field label="URL Verifikasi (opsional)"><Input type="url" value={form.credentialUrl ?? ""} onChange={e => set("credentialUrl", e.target.value)} placeholder="https://..." /></Field>
+        
+        {/* Fitur Upload Gambar (Vercel Blob) */}
+        <ImageUploader 
+          label="Logo/Gambar Sertifikat (opsional)"
+          value={form.imageUrl ?? ""} 
+          onChange={(url) => set("imageUrl", url)} 
+        />
       </FormModal>
     </div>
   );

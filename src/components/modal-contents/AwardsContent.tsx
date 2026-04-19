@@ -30,6 +30,18 @@ export default function AwardsContent() {
                   <h4 className="font-bold text-stone-800 text-sm">{award.title}</h4>
                   <p className="text-amber-600 text-xs font-medium">{award.issuer}</p>
                   <p className="text-stone-500 text-xs mt-1 leading-relaxed">{award.description}</p>
+                  
+                  {/* Show Image if exists */}
+                  {award.imageUrl && (
+                    <div className="mt-3 rounded-lg overflow-hidden border border-stone-200 bg-stone-50">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img 
+                        src={award.imageUrl} 
+                        alt={`Dokumentasi Penghargaan ${award.title}`} 
+                        className="w-full h-auto object-cover max-h-48"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
