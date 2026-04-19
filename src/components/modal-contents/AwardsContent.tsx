@@ -20,7 +20,7 @@ export default function AwardsContent() {
     <div className="space-y-7">
       {/* Awards */}
       <div>
-        <h3 className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-4">🏆 Penghargaan</h3>
+        {/* <h3 className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-4">🏆 Penghargaan</h3> */}
         <div className="space-y-3">
           {awards.map(award => (
             <div key={award.id} className="p-4 rounded-2xl bg-white border border-stone-100 hover:border-amber-200 hover:shadow-md transition-all duration-300">
