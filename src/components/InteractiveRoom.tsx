@@ -39,7 +39,7 @@ const roomElements: RoomElement[] = [
     modalType: "portfolio",
     label: "Portfolio",
     emoji: "💻",
-    style: { top: "40%", left: "50%", width: "18%" },
+    style: { top: "43%", left: "51%", width: "16%" },
   },
   {
     id: "koper",
@@ -141,7 +141,7 @@ export default function InteractiveRoom({ onElementClick }: InteractiveRoomProps
             width: el.style.width,
             zIndex: parseInt(el.style.top) + (hoveredId === el.id ? 15 : 0),
             transformOrigin: "bottom center",
-            transform: hoveredId === el.id ? "scale(1.12)" : "scale(1)",
+            transform: hoveredId === el.id && el.id !== "pc" ? "scale(1.12)" : "scale(1)",
             transition: "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease",
             filter:
               hoveredId === el.id
@@ -163,7 +163,7 @@ export default function InteractiveRoom({ onElementClick }: InteractiveRoomProps
               className="w-full h-auto block"
               draggable={false}
               style={{
-                animation: `float ${3.5 + (index % 3)}s ease-in-out ${index * 0.2}s infinite alternate`,
+                animation: el.id === "pc" ? "none" : `float ${3.5 + (index % 3)}s ease-in-out ${index * 0.2}s infinite alternate`,
               }}
             />
           </div>
