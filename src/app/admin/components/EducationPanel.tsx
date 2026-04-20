@@ -54,11 +54,19 @@ export default function EducationPanel() {
 
     const handleSave = async () => {
         setSaving(true);
+
+        const parseToNull = (val: any) => {
+            const strVal = String(val).trim();
+            if (!strVal || strVal === "-" || strVal === "undefined" || strVal === "null") return null;
+            const num = Number(strVal);
+            return isNaN(num) ? null : num;
+        };
+
         const payload = {
             ...form,
             startYear: Number(form.startYear),
-            endYear: form.endYear ? Number(form.endYear) : undefined,
-            gpa: form.gpa ? Number(form.gpa) : undefined,
+            endYear: parseToNull(form.endYear),
+            gpa: parseToNull(form.gpa),
         };
 
         if (editing) {
@@ -67,7 +75,8 @@ export default function EducationPanel() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ ...editing, ...payload }),
             });
-            setItems((prev) => prev.map((i) => (i.id === editing.id ? { id: editing.id, ...payload } : i)));
+            // Update tampilan di admin secara real-time
+            setItems((prev) => prev.map((i) => (i.id === editing.id ? { id: editing.id, ...payload } as any : i)));
         } else {
             const res = await authFetch("/api/portfolio/education", {
                 method: "POST",

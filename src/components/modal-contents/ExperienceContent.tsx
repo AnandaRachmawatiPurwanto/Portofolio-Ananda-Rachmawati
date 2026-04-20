@@ -19,18 +19,20 @@ function formatDate(dateStr: string): string {
 export default function ExperienceContent() {
   const experiences = useExperiences();
 
+  // 👇 INI RAHASIANYA: Memutar balik urutan data (yang terbaru jadi di atas)
+  const reversedExperiences = [...experiences].reverse();
+
   return (
     <div className="space-y-5">
       <div className="relative">
         <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-amber-200 via-orange-200 to-transparent" />
         <div className="space-y-6">
-          {experiences.map((exp, idx) => (
+          {reversedExperiences.map((exp, idx) => (
             <div key={exp.id} className="relative flex gap-5">
               <div className="relative shrink-0 z-10">
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg shadow-md overflow-hidden ${idx === 0 ? "bg-amber-400" : "bg-white border-2 border-amber-200"}`}>
                   {exp.logoUrl ? (
                     <>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={exp.logoUrl} alt={exp.company} className="w-full h-full object-contain p-1" />
                     </>
                   ) : (
@@ -38,18 +40,26 @@ export default function ExperienceContent() {
                   )}
                 </div>
               </div>
-              <div className="flex-1 pb-2">
+
+              <div className="flex-1 pb-2 min-w-0">
                 <div className="p-5 rounded-2xl bg-white border border-stone-100 hover:border-amber-200 hover:shadow-md transition-all duration-300">
-                  <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
-                    <div>
-                      <h4 className="font-bold text-stone-800 text-base">{exp.role}</h4>
-                      <p className="text-amber-600 font-semibold text-sm">{exp.company}</p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-3 mb-2">
+                    <div className="min-w-0">
+                      <h4 className="font-bold text-stone-800 text-base leading-tight break-words">{exp.role}</h4>
+                      <p className="text-amber-600 font-semibold text-sm mt-1 leading-relaxed break-words">{exp.company}</p>
                     </div>
-                    <div className="flex flex-col items-end gap-1">
-                      <span className={`px-2 py-0.5 rounded-md text-xs font-medium ${typeColors[exp.type]}`}>{exp.type}</span>
-                      <span className="text-xs text-stone-400">{formatDate(exp.startDate)} — {formatDate(exp.endDate)}</span>
+
+                    <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 sm:gap-1 justify-start">
+                      <span className={`px-2 py-0.5 rounded-md text-xs font-medium whitespace-nowrap ${typeColors[exp.type] || "bg-stone-100 text-stone-700"}`}>
+                        {exp.type}
+                      </span>
+                      <span className="text-xs text-stone-400 whitespace-nowrap">
+                        {formatDate(exp.startDate)} — {formatDate(exp.endDate)}
+                      </span>
                     </div>
                   </div>
+
                   <p className="text-stone-500 text-sm mt-2 mb-3 leading-relaxed">{exp.description}</p>
                   <ul className="space-y-1.5 mb-3">
                     {exp.achievements.map((ach, i) => (
@@ -65,6 +75,7 @@ export default function ExperienceContent() {
                   </div>
                 </div>
               </div>
+
             </div>
           ))}
         </div>

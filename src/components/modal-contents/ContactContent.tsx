@@ -14,28 +14,40 @@ export default function ContactContent() {
 
   return (
     <div className="space-y-6">
-      <div className="text-center py-4">
-        <div className="text-5xl mb-3">👋</div>
-        <h3 className="text-xl font-bold text-stone-800">Let&apos;s Work Together</h3>
-        <p className="text-stone-500 text-sm mt-2 max-w-sm mx-auto">
-          Saya terbuka untuk kolaborasi, project freelance, atau sekadar ngobrol soal tech & design.
+      {/* Margin dan ukuran teks disesuaikan untuk HP dan Desktop */}
+      <div className="text-center py-2 sm:py-4">
+        <div className="text-4xl sm:text-5xl mb-2 sm:mb-3">👋</div>
+        <h3 className="text-lg sm:text-xl font-bold text-stone-800">Let&apos;s Work Together</h3>
+        <p className="mt-2 text-xs sm:text-sm text-stone-500 max-w-sm sm:max-w-md mx-auto leading-relaxed px-4">
+          I&apos;m currently open for new opportunities. Whether you have a project in mind, want to collaborate, or just want to connect, feel free to reach out through any of the links below!
         </p>
       </div>
-      <div className="grid gap-3">
+
+      {/* 1 Kolom di HP (grid-cols-1), 2 Kolom di Desktop (sm:grid-cols-2) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {links.map(link => (
           <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
-            className={`flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-r ${link.color} border hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group`}>
-            <span className="text-2xl">{link.icon}</span>
+            // Padding lebih kecil di HP (p-3), kembali lega di Desktop (sm:p-4)
+            className={`flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl bg-gradient-to-r ${link.color} border hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group`}>
+
+            {/* shrink-0 memastikan ikon tidak terhimpit menjadi gepeng */}
+            <span className="text-xl sm:text-2xl shrink-0">{link.icon}</span>
+
             <div className="flex-1 min-w-0">
-              <p className="text-xs text-stone-500 font-semibold uppercase tracking-wide">{link.label}</p>
-              <p className="text-stone-700 font-bold text-sm truncate">{link.value}</p>
-              <p className="text-stone-400 text-xs mt-0.5">{link.description}</p>
+              <p className="text-[10px] sm:text-xs text-stone-500 font-semibold uppercase tracking-wide">{link.label}</p>
+              {/* Teks value bisa terpotong rapi dengan truncate jika layarnya benar-benar sempit */}
+              <p className="text-stone-700 font-bold text-xs sm:text-sm truncate">{link.value}</p>
+              <p className="text-stone-400 text-[10px] sm:text-xs mt-0.5 truncate sm:whitespace-normal">{link.description}</p>
             </div>
-            <span className="text-stone-300 group-hover:text-amber-500 transition-colors text-lg">→</span>
+
+            <span className="text-stone-300 group-hover:text-amber-500 transition-colors text-base sm:text-lg shrink-0">→</span>
           </a>
         ))}
       </div>
-      <div className="text-center text-xs text-stone-400 pt-2">Response time: usually within 24 hours 🕐</div>
+
+      <div className="text-center text-[10px] sm:text-xs text-stone-400 pt-2">
+        Response time: usually within 24 hours 🕐
+      </div>
     </div>
   );
 }
