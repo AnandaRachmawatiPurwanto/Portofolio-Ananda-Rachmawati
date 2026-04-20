@@ -18,13 +18,17 @@ export default function EducationContent() {
                     <div key={edu.id} className="group p-5 rounded-2xl bg-white border border-stone-100 hover:border-amber-200 hover:shadow-lg transition-all duration-300">
                         <div className="flex items-start justify-between gap-3 mb-1">
                             <div className="flex-1 min-w-0">
+                                {/* 👇 Nama Sekolah sekarang jadi judul utama */}
                                 <h4 className="font-bold text-stone-800 text-base">
-                                    {edu.degree}{edu.major ? ` — ${edu.major}` : ""}
+                                    {edu.institution}
                                 </h4>
-                                <p className="text-amber-600 text-sm font-semibold mt-0.5">{edu.institution}</p>
+                                {/* 👇 Jenjang dan Jurusan jadi sub-judul di bawahnya */}
+                                <p className="text-amber-600 text-sm font-semibold mt-0.5">
+                                    {edu.major}
+                                </p>
                             </div>
                             <span className="text-xs text-stone-400 shrink-0 mt-1">
-                                {edu.startYear} – {edu.endYear ?? "Sekarang"}
+                                {edu.startYear} – {edu.endYear ?? "Present"}
                             </span>
                         </div>
                         {edu.gpa && (
